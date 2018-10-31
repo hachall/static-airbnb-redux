@@ -5,14 +5,13 @@ import { setFlats } from '../actions';
 
 import Flat from '../containers/flat';
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { setFlats: setFlats },
-    dispatch
-  );
-}
 
 class FlatList extends Component {
+
+  componentWillMount() {
+    this.props.setFlats();
+  }
+
   static defaultProps = {
     flats: [{
       "name": "Charm at the Steps of Montmartre",
@@ -22,13 +21,26 @@ class FlatList extends Component {
     }]
   }
 
+
   render() {
     return (
-      <div className=" flat-list col-sm-7">
+      <div className="flat-list col-sm-7">
         {this.props.flats.map((flat) => <Flat flat={flat} key={flat.name}/>)}
       </div>
     );
   }
 }
 
-export default connect()(FlatList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(
+    { setFlats: setFlats },
+    dispatch
+  );
+}
+
+function mapStateToProps(state) { return {
+    flats: state.flats
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlatList);
