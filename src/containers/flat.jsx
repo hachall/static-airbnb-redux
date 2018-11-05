@@ -14,12 +14,12 @@ class Flat extends Component {
     };
 
     let classes = "flat card";
-    if (this.props.flat === this.props.selectedFLat) {
+    if (this.props.flat === this.props.selectedFlat) {
       classes += " selected";
     }
 
     return (
-      <div className={classes} style={style} onClick={this.handleCLick}>
+      <div className={classes} style={style} onClick={this.handleClick}>
         <div className="card-description">
           <h2>{this.props.flat.name}</h2>
           <p>{this.props.flat.price} {this.props.flat.priceCurrency}</p>
@@ -29,7 +29,7 @@ class Flat extends Component {
   }
 }
 
-import { selectFlat } from '../actions'
+import { selectFlat } from '../actions';
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
@@ -40,7 +40,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapReduxStateToProps(reduxState) {
   return {
-    selectedFlat: reduxState.selectedFLat
+    selectedFlat: reduxState.selectedFlat
   }
 }
 
